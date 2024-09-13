@@ -2,7 +2,7 @@ package com.folhadepagamento.com.folhadepagamento.entidade;
 
 import java.time.LocalDate;
 
-
+//comentario teste
 public abstract class Pessoa {
 
     protected String nome;
