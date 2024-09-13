@@ -1,7 +1,7 @@
 package com.folhadepagamento.com.folhadepagamento.entidade;
 
 import java.time.LocalDate;
-
+//bom dia
 public class Dependente extends Pessoa{
 
     private TipoParentesco tipoParentesco;
