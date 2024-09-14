@@ -3,17 +3,39 @@ package com.folhadepagamento.com.folhadepagamento.fiscal;
 import java.util.Scanner;
 
 public enum TabelaINSS {
-		
+
 	FAIXA1(0., 1412.00, 7.5),
-	FAIXA2(1412.01, 2666.68, 9),
-	FAIXA3(2666.69, 4000.03, 12),
-	FAIXA4(4000.04, 7786.02, 14),
-	FAIXA5(7786.03, null, 14)
-		
+	FAIXA2(1412.01, 2666.68, 9.),
+	FAIXA3(2666.69, 4000.03, 12.),
+	FAIXA4(4000.04, 7786.02, 14.),
+	FAIXA5(7786.03, null, 14.);
+
 	private Double valorMinimo;
 	private Double valorMaximo;
 	private Double aliquota;
 	
+	TabelaINSS(Double valorMinimo, Double valorMaximo, Double aliquota) {
+		this.valorMinimo = valorMinimo;
+		this.valorMaximo = valorMaximo;
+		this.aliquota = aliquota;
+
+	}
+	
+	public Double getValorMinimo() {
+		return valorMinimo;
+
+	}
+
+	public Double getValorMaximo() {
+		return valorMaximo;
+
+	}
+
+	public Double getAliquota() {
+		return aliquota;
+
+	}
+
 }
 
 // Tabela de alíquotas de 2024:

@@ -1,6 +1,8 @@
 package com.folhadepagamento.com.folhadepagamento.entidade;
 
 import com.folhadepagamento.com.folhadepagamento.fiscal.CalculosFolhaDePagamento;
+import com.folhadepagamento.com.folhadepagamento.fiscal.TabelaINSS;
+import com.folhadepagamento.com.folhadepagamento.fiscal.TabelaImpostoDeRenda;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -9,9 +11,9 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
 
     private String profissao;
     private Double salarioBruto;
-    private Double salarioLiquido;
-    private Double descontoINSS;
-    private Double descontoIR;
+    private Double salarioLiquido= 0.;
+    private Double descontoINSS = 0.;
+    private Double descontoIR = 0.;
     private Dependente numeroDependente;
 
     public Funcionario(String nome, String cpf, LocalDate dataNascimento, String profissao, Double salarioBruto) {
@@ -74,17 +76,17 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
     }
 
     @Override
-    public void calcularInss(Double salarioBruto) {
+    public void calcularInss(Double salarioBruto, TabelaINSS tabelaINSS) {
+        descontoINSS += salarioBruto;
+    }
+
+    @Override
+    public void calcularValorPorDependente(Double salarioBruto, Dependente numeroDependentes) {
 
     }
 
     @Override
-    public void calcularValorPorDependente(Double salarioBruto) {
-
-    }
-
-    @Override
-    public void calcularIR() {
+    public void calcularIR(Double salarioBruto, TabelaImpostoDeRenda tabelaImpostoDeRenda) {
 
     }
 }
