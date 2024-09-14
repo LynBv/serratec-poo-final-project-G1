@@ -11,11 +11,7 @@ public enum TabelaImpostoDeRenda {
 	private Double valorMinimo;
 	private Double valorMaximo;
 	private Double aliquota;
-	
 
-	
-	
-	
 	}
 
 // Tabela de Imposto de Renda para o ano de 2024:

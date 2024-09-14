@@ -67,4 +67,24 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
     public void setNumeroDependente(Dependente numeroDependente) {
         this.numeroDependente = numeroDependente;
     }
+
+    @Override
+    public void calcularSalarioLiquido(Double salarioBruto) {
+
+    }
+
+    @Override
+    public void calcularInss(Double salarioBruto) {
+
+    }
+
+    @Override
+    public void calcularValorPorDependente(Double salarioBruto) {
+
+    }
+
+    @Override
+    public void calcularIR() {
+
+    }
 }
