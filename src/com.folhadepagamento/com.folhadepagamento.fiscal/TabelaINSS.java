@@ -4,21 +4,21 @@ import java.util.Scanner;
 
 public enum TabelaINSS {
 
-	FAIXA1(0., 1412.00, 7.5),
-	FAIXA2(1412.01, 2666.68, 9.),
-	FAIXA3(2666.69, 4000.03, 12.),
-	FAIXA4(4000.04, 7786.02, 14.),
-	FAIXA5(7786.03, null, 14.);
+	FAIXA1(0., 1412.00, 7.5, 0.),
+	FAIXA2(1412.01, 2666.68, 9., 21.18),
+	FAIXA3(2666.69, 4000.03, 12., 101.18),
+	FAIXA4(4000.04, 7786.02, 14., 181.18);
 
 	private Double valorMinimo;
 	private Double valorMaximo;
 	private Double aliquota;
+	private Double deducao;
 	
-	TabelaINSS(Double valorMinimo, Double valorMaximo, Double aliquota) {
+	TabelaINSS(Double valorMinimo, Double valorMaximo, Double aliquota, Double deducao) {
 		this.valorMinimo = valorMinimo;
 		this.valorMaximo = valorMaximo;
 		this.aliquota = aliquota;
-
+		this.deducao = deducao;
 	}
 	
 	public Double getValorMinimo() {
@@ -33,7 +33,10 @@ public enum TabelaINSS {
 
 	public Double getAliquota() {
 		return aliquota;
+	}
 
+	public Double getDeducao() {
+		return deducao;
 	}
 
 }
