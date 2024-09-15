@@ -3,6 +3,7 @@ package com.folhadepagamento.com.folhadepagamento.entidade;
 import com.folhadepagamento.com.folhadepagamento.exceptions.DependentException;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Dependente extends Pessoa {
 
@@ -11,7 +12,7 @@ public class Dependente extends Pessoa {
 
     public Dependente(String nome, String cpf, LocalDate dataNascimento, TipoParentesco tipoParentesco) {
         super(nome, cpf, dataNascimento);
-        if ((dataNascimento.getYear() - LocalDate.now().getYear()) < -18) {
+        if (calcularIdade(dataNascimento) >= 18) {
             throw new DependentException(nome + " tem mais de 18 anos.");
         } else {
             this.tipoParentesco = tipoParentesco;
@@ -24,5 +25,10 @@ public class Dependente extends Pessoa {
 
     public void setTipoParentesco(TipoParentesco tipoParentesco) {
         this.tipoParentesco = tipoParentesco;
+    }
+
+    private int calcularIdade(LocalDate dataNascimento) {
+        Period periodo = Period.between(dataNascimento, LocalDate.now());
+        return periodo.getYears();
     }
 }

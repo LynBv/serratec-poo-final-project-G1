@@ -22,13 +22,23 @@ public class TesteCalculos {
         }
         try {
             Dependente d1 = new Dependente
-                    ("maria", "1234", LocalDate.parse("2020-01-09"), TipoParentesco.OUTROS);
+                    ("maria", "1224", LocalDate.parse("2000-01-09"), TipoParentesco.OUTROS);
             try{
                 f.adicionarDependente(d1);
             } catch (DependentException e){
                 System.out.println(e.getMessage());
             }
-
+        } catch (DependentException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            Dependente d1 = new Dependente
+                    ("julia", "1234", LocalDate.parse("2015-01-09"), TipoParentesco.FILHO);
+            try{
+                f.adicionarDependente(d1);
+            } catch (DependentException e){
+                System.out.println(e.getMessage());
+            }
         } catch (DependentException e) {
             System.out.println(e.getMessage());
         }
