@@ -1,5 +1,6 @@
 package com.folhadepagamento.com.folhadepagamento.entidade;
 
+import com.folhadepagamento.com.folhadepagamento.exceptions.DependentException;
 import com.folhadepagamento.com.folhadepagamento.fiscal.CalculosFolhaDePagamento;
 import com.folhadepagamento.com.folhadepagamento.fiscal.TabelaINSS;
 import com.folhadepagamento.com.folhadepagamento.fiscal.TabelaIR;
@@ -12,14 +13,14 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
 
     private String profissao;
     private Double salarioBruto;
-    private Double salarioLiquido= 0.;
+    private Double salarioLiquido = 0.;
     private Double descontoINSS = 0.;
     private Double descontoIR = 0.;
     private Double descontoPorDependente = 0.;
     private final Double DESCONTO_DEPENDENTE = 189.59;
     private List<Dependente> dependentes = new ArrayList<Dependente>();
 
-    public Funcionario(String nome, String cpf, LocalDate dataNascimento, Double salarioBruto){
+    public Funcionario(String nome, String cpf, LocalDate dataNascimento, Double salarioBruto) {
         super(nome, cpf, dataNascimento);
         this.salarioBruto = salarioBruto;
     }
@@ -69,7 +70,13 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
         return dependentes;
     }
 
-    public void adicionarDependente(Dependente dependente){
+    public void adicionarDependente(Dependente dependente) {
+        for (Dependente d : dependentes) {
+            if (d.getCpf().equals(dependente.getCpf())) {
+                throw new DependentException
+                        ("O cpf de " + dependente.getNome() + " é igual ao de " + d.getNome() + ".");
+            }
+        }
         dependentes.add(dependente);
     }
 
@@ -79,30 +86,30 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
 
     private void calcularInss() {
         TabelaINSS tabelaINSS = TabelaINSS.FAIXA4;
-        if (salarioBruto < tabelaINSS.getValorMaximo()){
-            for (TabelaINSS tabelaINSS1 : TabelaINSS.values()){
+        if (salarioBruto < tabelaINSS.getValorMaximo()) {
+            for (TabelaINSS tabelaINSS1 : TabelaINSS.values()) {
                 boolean acimaDoMinimo = salarioBruto > tabelaINSS1.getValorMinimo();
                 boolean abaixoDoMaximo = salarioBruto < tabelaINSS1.getValorMaximo();
                 if (acimaDoMinimo && abaixoDoMaximo) {
                     tabelaINSS = tabelaINSS1;
-                    descontoINSS += ((salarioBruto * tabelaINSS.getAliquota())/100) - tabelaINSS.getDeducao();
+                    descontoINSS += ((salarioBruto * tabelaINSS.getAliquota()) / 100) - tabelaINSS.getDeducao();
                     break;
                 }
             }
         } else {
-            descontoINSS += ((tabelaINSS.getValorMaximo() * tabelaINSS.getAliquota())/100) - tabelaINSS.getDeducao();
+            descontoINSS += ((tabelaINSS.getValorMaximo() * tabelaINSS.getAliquota()) / 100) - tabelaINSS.getDeducao();
         }
     }
 
     private void calcularValorPorDependente() {
         int numeroDependentes = dependentes.size();
-        descontoPorDependente +=  numeroDependentes * DESCONTO_DEPENDENTE;
+        descontoPorDependente += numeroDependentes * DESCONTO_DEPENDENTE;
     }
 
     private void calcularIR() {
         TabelaIR tabelaIR = TabelaIR.FAIXA5;
-        for (TabelaIR tabelaIR1 : TabelaIR.values()){
-            if (tabelaIR1.getValorMaximo()!= null) {
+        for (TabelaIR tabelaIR1 : TabelaIR.values()) {
+            if (tabelaIR1.getValorMaximo() != null) {
                 boolean acimaDoMinimo = salarioBruto > tabelaIR1.getValorMinimo();
                 boolean abaixoDoMaximo = salarioBruto < tabelaIR1.getValorMaximo();
                 if (acimaDoMinimo && abaixoDoMaximo) {
@@ -113,10 +120,11 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
                 tabelaIR = tabelaIR1;
             }
         }
-        descontoIR = (((salarioBruto - descontoPorDependente - descontoINSS) * tabelaIR.getAliquota())/100 - tabelaIR.getDeducao());
+        descontoIR = (((salarioBruto - descontoPorDependente - descontoINSS)
+                * tabelaIR.getAliquota()) / 100 - tabelaIR.getDeducao());
     }
 
-    public void gerarFolhaPagamento (){
+    public void gerarFolhaPagamento() {
         this.calcularInss();
         this.calcularValorPorDependente();
         this.calcularIR();
