@@ -1,12 +1,14 @@
 package com.folhadepagamento.com.folhadepagamento.fiscal;
 
+import com.folhadepagamento.com.folhadepagamento.entidade.Dependente;
+
 public interface CalculosFolhaDePagamento {
 	
-	public void calcularSalarioLiquido(Double salarioBruto );
-	
-	public void calcularInss(Double salarioBruto );
-	
-	public void calcularValorPorDependente(Double salarioBruto);
-	
-	public void calcularIR();
+	/*public void calcularSalarioLiquido();
+
+	public void calcularInss();
+
+	public void calcularValorPorDependente();
+
+	public void calcularIR();*/
 }
