@@ -3,12 +3,13 @@ package com.folhadepagamento.com.folhadepagamento.fiscal;
 import com.folhadepagamento.com.folhadepagamento.entidade.Dependente;
 
 public interface CalculosFolhaDePagamento {
-	
-	/*public void calcularSalarioLiquido();
 
-	public void calcularInss();
+    public void calcularSalarioLiquido();
 
-	public void calcularValorPorDependente();
+    public Double calcularInss();
 
-	public void calcularIR();*/
+    public Double calcularValorPorDependente();
+
+    public Double calcularIR();
 }
+
