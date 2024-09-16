@@ -89,15 +89,15 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
     }
 
     public void calcularSalarioLiquido() {
-        salarioLiquido += salarioBruto - descontoINSS - descontoIR;
+        salarioLiquido += salarioBruto - this.calcularInss() - this.calcularIR();
     }
 
     public Double calcularInss() {
         TabelaINSS tabelaINSS = TabelaINSS.FAIXA4;
         if (salarioBruto < tabelaINSS.getValorMaximo()) {
             for (TabelaINSS tabelaINSS1 : TabelaINSS.values()) {
-                boolean acimaDoMinimo = salarioBruto > tabelaINSS1.getValorMinimo();
-                boolean abaixoDoMaximo = salarioBruto < tabelaINSS1.getValorMaximo();
+                boolean acimaDoMinimo = salarioBruto >= tabelaINSS1.getValorMinimo();
+                boolean abaixoDoMaximo = salarioBruto <= tabelaINSS1.getValorMaximo();
                 if (acimaDoMinimo && abaixoDoMaximo) {
                     tabelaINSS = tabelaINSS1;
                     descontoINSS += ((salarioBruto * tabelaINSS.getAliquota()) / 100) - tabelaINSS.getDeducao();
@@ -120,8 +120,8 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
         TabelaIR tabelaIR = TabelaIR.FAIXA5;
         for (TabelaIR tabelaIR1 : TabelaIR.values()) {
             if (tabelaIR1.getValorMaximo() != null) {
-                boolean acimaDoMinimo = salarioBruto > tabelaIR1.getValorMinimo();
-                boolean abaixoDoMaximo = salarioBruto < tabelaIR1.getValorMaximo();
+                boolean acimaDoMinimo = salarioBruto >= tabelaIR1.getValorMinimo();
+                boolean abaixoDoMaximo = salarioBruto <= tabelaIR1.getValorMaximo();
                 if (acimaDoMinimo && abaixoDoMaximo) {
                     tabelaIR = tabelaIR1;
                     break;
@@ -130,7 +130,7 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
                 tabelaIR = tabelaIR1;
             }
         }
-        descontoIR = (((salarioBruto - deducaoDependentes - descontoINSS)
+        descontoIR = (((salarioBruto - this.calcularValorPorDependente() - this.calcularInss())
                 * tabelaIR.getAliquota()) / 100 - tabelaIR.getDeducao());
         return descontoIR;
     }
