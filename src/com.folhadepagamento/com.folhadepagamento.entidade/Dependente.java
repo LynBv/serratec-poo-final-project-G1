@@ -19,6 +19,7 @@ public class Dependente extends Pessoa {
         }
     }
 
+
     public TipoParentesco getTipoParentesco() {
         return tipoParentesco;
     }

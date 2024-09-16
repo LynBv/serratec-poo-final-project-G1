@@ -31,6 +31,9 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
         this.salarioBruto = salarioBruto;
     }
 
+    public Funcionario() {
+    }
+
     @Override
     public String toString() {
         return "Funcionario{" +
@@ -57,6 +60,11 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
     public Double getSalarioBruto() {
         return salarioBruto;
     }
+
+    public void setSalarioBruto(Double salarioBruto) {
+        this.salarioBruto = salarioBruto;
+    }
+
 
     public Double getSalarioLiquido() {
         return salarioLiquido;
@@ -134,3 +142,5 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
         this.calcularSalarioLiquido();
     }
 }
+
+
