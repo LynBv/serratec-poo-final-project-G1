@@ -31,7 +31,7 @@ public class TesteCalculos {
         } catch (DependentException e) {
             System.out.println(e.getMessage());
         }
-       /* try {
+        try {
             Dependente d1 = new Dependente
                     ("julia", "123dsad4",  LocalDate.now(), TipoParentesco.FILHO);
             try{
@@ -41,7 +41,7 @@ public class TesteCalculos {
             }
         } catch (DependentException e) {
             System.out.println(e.getMessage());
-        } */
+        }
         f.gerarFolhaPagamento();
         System.out.println(f.toString());
 
