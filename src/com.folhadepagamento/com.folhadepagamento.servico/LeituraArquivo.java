@@ -16,7 +16,7 @@ public class LeituraArquivo {
 
     public static List<Funcionario> lerFuncionario(String caminhoArquivo) throws FileNotFoundException {
 
-        Scanner lerArquivo = new Scanner((new File("C:\\Users\\Matheus\\Desktop\\Serratec\\Programação Orientada a Objetos\\Códigos\\ProjetoFinalPOO\\serratec-poo-final-project-G1\\src\\com.folhadepagamento\\com.folhadepagamento.resources\\tabela_funcionario.csv")));
+        Scanner lerArquivo = new Scanner((new File(caminhoArquivo)));
         //System.out.println("Digite o nome do arquivo:");
         //AQUI EU PEÇO NOME DO ARQUIVO PARA O USUÁRIO
 
