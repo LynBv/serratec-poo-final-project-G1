@@ -6,10 +6,10 @@ public interface CalculosFolhaDePagamento {
 
     public void calcularSalarioLiquido();
 
-    public Double calcularInss();
+    public void calcularInss();
 
-    public Double calcularValorPorDependente();
+    public void calcularValorPorDependente();
 
-    public Double calcularIR();
+    public void calcularIR();
 }
 

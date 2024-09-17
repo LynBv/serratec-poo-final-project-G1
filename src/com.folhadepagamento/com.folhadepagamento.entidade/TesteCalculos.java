@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 public class TesteCalculos {
     public static void main(String[] args) {
-        Funcionario f = new Funcionario("Elyn", "1234", LocalDate.now(), 6000.);
+        Funcionario f = new Funcionario("Elyn", "1234", LocalDate.now(), 5600.56);
         try {
             Dependente d1 = new Dependente
                     ("ana", "1234", LocalDate.now(), TipoParentesco.FILHO);
@@ -22,7 +22,7 @@ public class TesteCalculos {
         }
         try {
             Dependente d1 = new Dependente
-                    ("maria", "1224", LocalDate.parse("2000-01-09"), TipoParentesco.OUTROS);
+                    ("maria", "1224dasd",  LocalDate.now(), TipoParentesco.OUTROS);
             try{
                 f.adicionarDependente(d1);
             } catch (DependentException e){
@@ -31,9 +31,9 @@ public class TesteCalculos {
         } catch (DependentException e) {
             System.out.println(e.getMessage());
         }
-        try {
+       /* try {
             Dependente d1 = new Dependente
-                    ("julia", "1234", LocalDate.parse("2015-01-09"), TipoParentesco.FILHO);
+                    ("julia", "123dsad4",  LocalDate.now(), TipoParentesco.FILHO);
             try{
                 f.adicionarDependente(d1);
             } catch (DependentException e){
@@ -41,7 +41,7 @@ public class TesteCalculos {
             }
         } catch (DependentException e) {
             System.out.println(e.getMessage());
-        }
+        } */
         f.gerarFolhaPagamento();
         System.out.println(f.toString());
 
