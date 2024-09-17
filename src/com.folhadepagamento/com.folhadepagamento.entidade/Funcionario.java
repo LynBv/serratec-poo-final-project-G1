@@ -111,20 +111,18 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
 
     public void calcularIR() {
         TabelaIR tabelaIR = TabelaIR.FAIXA5;
-        for (TabelaIR tabelaIR1 : TabelaIR.values()) {
-            if (tabelaIR1.getValorMaximo() != null) {
-                boolean acimaDoMinimo = salarioBruto >= tabelaIR1.getValorMinimo();
-                boolean abaixoDoMaximo = salarioBruto <= tabelaIR1.getValorMaximo();
+        Double salarioBase = salarioBruto - deducaoDependentes - descontoINSS;
+        if (salarioBase <= tabelaIR.getValorMinimo()) {
+            for (TabelaIR tabelaIR1 : TabelaIR.values()) {
+                boolean acimaDoMinimo = salarioBase >= tabelaIR1.getValorMinimo();
+                boolean abaixoDoMaximo = salarioBase <= tabelaIR1.getValorMaximo();
                 if (acimaDoMinimo && abaixoDoMaximo) {
                     tabelaIR = tabelaIR1;
                     break;
                 }
-            } else {
-                tabelaIR = tabelaIR1;
             }
         }
-        descontoIR = (((salarioBruto - deducaoDependentes - descontoINSS)
-                * tabelaIR.getAliquota()) / 100 - tabelaIR.getDeducao());
+        descontoIR = (salarioBase * tabelaIR.getAliquota()) / 100 - tabelaIR.getDeducao();
     }
 
     public void calcularSalarioLiquido() {

@@ -14,6 +14,7 @@ public class Menu extends JFrame implements ActionListener {
     private final String PROCURAR_ARQUIVO = "PROCURAR";
     private final String ARQUIVO_ENCONTRADO = "arquivo encontrado!";
     private final String ARQUIVO_NAO_ENCONTRADO = "arquivo nao encontrado.";
+    private final String FOLHA_GERADA = "FOLHA GERADA!";
     JLabel labelCabecalho;
     JLabel labelInstrucao;
     JLabel labelCaminho;
@@ -24,6 +25,7 @@ public class Menu extends JFrame implements ActionListener {
     JPanel panelCabecalho;
     JPanel panelProcurar;
     JPanel panelGerarFP;
+    JOptionPane popUpFP;
 
     public Menu() {
 
@@ -45,6 +47,9 @@ public class Menu extends JFrame implements ActionListener {
         if (e.getSource() == buttonProcurar) {
             buttonGerarFP.setVisible(true);
             labelResultadoProcura.setVisible(true);
+        }
+        if (e.getSource() == buttonGerarFP) {
+           JOptionPane.showMessageDialog(null, "Folha de Pagamento");
         }
     }
 
@@ -83,8 +88,6 @@ public class Menu extends JFrame implements ActionListener {
         buttonProcurar.setBackground(Color.LIGHT_GRAY);
         buttonProcurar.addActionListener(this);
 
-
-
         labelResultadoProcura = new JLabel(ARQUIVO_ENCONTRADO);
         labelResultadoProcura.setBounds(15, 85, 300, 15);
         labelResultadoProcura.setForeground(Color.gray);
@@ -110,6 +113,7 @@ public class Menu extends JFrame implements ActionListener {
         buttonGerarFP.setFocusable(false);
         buttonGerarFP.setBorder(BorderFactory.createEtchedBorder());
         buttonGerarFP.setBackground(Color.white);
+        buttonGerarFP.addActionListener(this);
         buttonGerarFP.setVisible(false);
 
         panelGerarFP = new JPanel(null);
@@ -119,5 +123,11 @@ public class Menu extends JFrame implements ActionListener {
         panelGerarFP.setVisible(true);
 
         return panelGerarFP;
+    }
+
+    public JOptionPane criarPopUpFP(){
+        popUpFP = new JOptionPane(FOLHA_GERADA);
+        popUpFP.createDialog(null);
+        return popUpFP;
     }
 }
