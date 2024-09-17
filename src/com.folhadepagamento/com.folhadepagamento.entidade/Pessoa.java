@@ -2,7 +2,6 @@ package com.folhadepagamento.com.folhadepagamento.entidade;
 
 import java.time.LocalDate;
 
-//comentario teste
 public abstract class Pessoa {
 
     protected String nome;
@@ -14,6 +13,8 @@ public abstract class Pessoa {
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
     }
+
+    public Pessoa() {}
 
     public String getNome() {
         return nome;
@@ -31,9 +32,9 @@ public abstract class Pessoa {
         this.cpf = cpf;
     }
 
-   public LocalDate getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
-   }
+    }
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
