@@ -6,7 +6,7 @@ public enum TabelaIR {
 	FAIXA2(2259.21, 2826.65, 7.5,169.44),
 	FAIXA3(2826.66, 3751.05, 15.,381.44),
 	FAIXA4(3751.06, 4664.68, 22.5, 662.77),
-	FAIXA5(4664.69, null, 27.5, 896.);
+	FAIXA5(4664.68, null, 27.5, 896.);
 
 	private Double valorMinimo;
 	private Double valorMaximo;
