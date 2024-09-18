@@ -16,6 +16,7 @@ public class LeituraArquivo {
 
     private  List<Funcionario> funcionarios = new ArrayList<>();
 
+
     public LeituraArquivo() {
     }
 
@@ -23,10 +24,10 @@ public class LeituraArquivo {
         return funcionarios;
     }
 
-    public List<Funcionario> lerFuncionario(String caminhoArquivo) throws FileNotFoundException {
+    public List<Funcionario> lerFuncionario(String caminhoArquivo) throws FileNotFoundException {  
 
+        Scanner lerArquivo = new Scanner((new File(caminhoArquivo)));
 
-        Scanner lerArquivo = new Scanner((new File("C:\\Users\\Matheus\\Desktop\\Serratec\\POO\\Codigos\\ProjetoFinalPOO\\serratec-poo-final-project-G1\\src\\com.folhadepagamento\\com.folhadepagamento.resources\\tabela_funcionario.csv")));
         //System.out.println("Digite o nome do arquivo:");
         //AQUI EU PEÇO NOME DO ARQUIVO PARA O USUÁRIO
 
