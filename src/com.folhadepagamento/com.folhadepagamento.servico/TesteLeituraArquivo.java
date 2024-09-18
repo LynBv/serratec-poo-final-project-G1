@@ -11,8 +11,7 @@ public class TesteLeituraArquivo {
 
         try {
 
-            List<Funcionario> funcionarios = LeituraArquivo.lerFuncionario("caminho_para_o_arquivo.csv");
-
+            List<Funcionario> funcionarios = LeituraArquivo.lerFuncionario("");
 
             for (Funcionario funcionario : funcionarios) {
                 System.out.println("Funcionário: " + funcionario.getNome() + " - CPF: " + funcionario.getCpf() + " Salário Bruto" + funcionario.getSalarioBruto());
