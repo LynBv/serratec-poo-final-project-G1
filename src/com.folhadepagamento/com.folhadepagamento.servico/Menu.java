@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -13,7 +14,7 @@ public class Menu extends JFrame implements ActionListener {
     private final String INSTRUCAO_SELECIONAR_ARQUIVO_LEITURA = "Escolha o arquivo com os dados dos funcionarios.";
     private final String INSTRUCAO_SELECIONAR_ARQUIVO_ESCRITA = "Escolha o arquivo que deseja gravar a folha de pagamento.";
     private final String SELECIONAR_CAMINHO = "Digite o caminho do arquivo:";
-    private final String GERAR_FP = "Gerar Folha de Pagamento";
+    private final String GERAR_FP = "GERAR FOLHA DE PAGAMENTO";
     private final String PROCURAR_ARQUIVO = "PROCURAR";
     private final String ARQUIVO_ENCONTRADO = "arquivo encontrado!";
     private final String ARQUIVO_NAO_ENCONTRADO = "arquivo nao encontrado.";
@@ -34,6 +35,7 @@ public class Menu extends JFrame implements ActionListener {
     JPanel panelCabecalho;
     JPanel panelProcurar;
     JPanel panelGerarFP;
+    JPanel panelBloco;
     LeituraArquivo leitura;
 
 
@@ -43,12 +45,14 @@ public class Menu extends JFrame implements ActionListener {
         this.setTitle(TITULO);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(null);
-        this.setSize(700, 320);
+        this.setSize(700, 340);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.add(criarPanelCabecalho());
         this.add(criarPanelProcurar());
         this.add(criarPanelGerarFP());
+        //this.add(criarPanelBloco());
+
 
         this.setVisible(true);
     }
@@ -60,35 +64,26 @@ public class Menu extends JFrame implements ActionListener {
             try {
                 leitura.lerFuncionario(textFieldCaminhoLeitura.getText());
 
-                labelInstrucaoCaminhoEscrita.setVisible(true);
-                buttonGerarFP.setVisible(true);;
-                textFieldCaminhoGravacao.setVisible(true);
                 labelResultadoProcura.setText(ARQUIVO_ENCONTRADO);
-                labelCaminhoEscrita.setVisible(true);
+                panelGerarFP.setVisible(true);
 
             } catch (FileNotFoundException ex) {
                 labelResultadoProcura.setText(ARQUIVO_NAO_ENCONTRADO);
-
-                buttonGerarFP.setVisible(false);
-                textFieldCaminhoGravacao.setVisible(false);
-                labelInstrucaoCaminhoEscrita.setVisible(false);
-                labelCaminhoEscrita.setVisible(false);
-                labelResultadoEscrita.setVisible(false);
-
+                panelGerarFP.setVisible(false);
             }
             labelResultadoProcura.setVisible(true);
         }
         if (e.getSource() == buttonGerarFP) {
             try {
                 EscritaArquivo.gravarFuncionarios(leitura.getFuncionarios(),textFieldCaminhoGravacao.getText());
+                Desktop.getDesktop().open(new File(textFieldCaminhoGravacao.getText()));
                 labelResultadoEscrita.setText(ARQUIVO_GERADO);
 
             } catch (IOException ex) {
-                System.err.println("Erro ao criar o arquivo : " + ex.getMessage());
+                JOptionPane.showMessageDialog(null,"Erro ao criar o arquivo : " + ex.getMessage());
                 labelResultadoEscrita.setText(ARQUIVO_NAO_GERADO);
             }
             labelResultadoEscrita.setVisible(true);
-
         }
     }
 
@@ -147,41 +142,49 @@ public class Menu extends JFrame implements ActionListener {
     public JPanel criarPanelGerarFP(){
         labelInstrucaoCaminhoEscrita = new JLabel(INSTRUCAO_SELECIONAR_ARQUIVO_ESCRITA);
         labelInstrucaoCaminhoEscrita.setBounds(10, 10, 400, 15);
-        labelInstrucaoCaminhoEscrita.setVisible(false);
+        labelInstrucaoCaminhoEscrita.setVisible(true);
 
         labelCaminhoEscrita = new JLabel(SELECIONAR_CAMINHO);
         labelCaminhoEscrita.setBounds(10, 30, 300, 15);
-        labelCaminhoEscrita.setVisible(false);
+        labelCaminhoEscrita.setVisible(true);
 
         textFieldCaminhoGravacao = new JTextField();
         textFieldCaminhoGravacao.setBounds(9,55,400,26);
-        textFieldCaminhoGravacao.setVisible(false);
+        textFieldCaminhoGravacao.setVisible(true);
 
         buttonGerarFP = new JButton(GERAR_FP);
         buttonGerarFP.setLocation(420,55);
         buttonGerarFP.setSize(buttonGerarFP.getPreferredSize());
         buttonGerarFP.setFocusable(false);
         buttonGerarFP.setBorder(BorderFactory.createEtchedBorder());
-        buttonGerarFP.setBackground(Color.white);
+        buttonGerarFP.setBackground(Color.LIGHT_GRAY);
         buttonGerarFP.addActionListener(this);
-        buttonGerarFP.setVisible(false);
+        buttonGerarFP.setVisible(true);
 
         labelResultadoEscrita = new JLabel();
         labelResultadoEscrita.setBounds(15, 85, 300, 15);
-        labelResultadoEscrita.setForeground(Color.darkGray);
-        labelResultadoEscrita.setVisible(false);
+        labelResultadoEscrita.setForeground(Color.gray);
+        labelResultadoEscrita.setVisible(true);
 
         panelGerarFP = new JPanel(null);
         panelGerarFP.setBounds(0,170,700,300);
-        panelGerarFP.setBackground(Color.LIGHT_GRAY);
         panelGerarFP.add(labelInstrucaoCaminhoEscrita);
         panelGerarFP.add(labelCaminhoEscrita);
         panelGerarFP.add(buttonGerarFP);
         panelGerarFP.add(labelResultadoEscrita);
         panelGerarFP.add(textFieldCaminhoGravacao);
-        panelGerarFP.setVisible(true);
+        panelGerarFP.setVisible(false);
 
         return panelGerarFP;
+    }
+
+    public JPanel criarPanelBloco(){
+        panelBloco = new JPanel();
+        panelGerarFP.setBounds(0,170,700,300);
+        panelGerarFP.setBackground(Color.LIGHT_GRAY);
+        panelGerarFP.setVisible(true);
+
+        return panelBloco;
     }
 
 }

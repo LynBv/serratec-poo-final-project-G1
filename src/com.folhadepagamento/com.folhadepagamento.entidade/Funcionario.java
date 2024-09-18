@@ -11,7 +11,6 @@ import java.util.List;
 
 public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
 
-    private String profissao;
     private Double salarioBruto;
     private Double salarioLiquido;
     private Double descontoINSS;
@@ -25,36 +24,17 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
         this.salarioBruto = salarioBruto;
     }
 
-    public Funcionario(String nome, String cpf, LocalDate dataNascimento, String profissao, Double salarioBruto) {
-        super(nome, cpf, dataNascimento);
-        this.profissao = profissao;
-        this.salarioBruto = salarioBruto;
-    }
-
     public Funcionario() {
     }
 
     @Override
     public String toString() {
-        return "Funcionario{" +
-                "salarioBruto=" + salarioBruto +
-                ", salarioLiquido=" + salarioLiquido +
-                ", descontoINSS=" + descontoINSS +
-                ", descontoIR=" + descontoIR +
-                ", descontoPorDependente=" + deducaoDependentes +
-                '}';
+        return "\nFuncionario:" + "salarioBruto=" + salarioBruto + ", salarioLiquido=" + salarioLiquido + ", descontoINSS="
+                + descontoINSS + ", descontoIR=" + descontoIR + ", descontoPorDependente=" + deducaoDependentes;
     }
 
     public Double getDescontoIR() {
         return descontoIR;
-    }
-
-    public String getProfissao() {
-        return profissao;
-    }
-
-    public void setProfissao(String profissao) {
-        this.profissao = profissao;
     }
 
     public Double getSalarioBruto() {
