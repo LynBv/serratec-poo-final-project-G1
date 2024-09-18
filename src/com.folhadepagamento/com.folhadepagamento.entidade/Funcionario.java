@@ -80,8 +80,8 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
     public void adicionarDependente(Dependente dependente) {
         for (Dependente d : dependentes) {
             if (d.getCpf().equals(dependente.getCpf())) {
-               // throw new DependentException
-                       // ("O cpf de " + dependente.getNome() + " é igual ao de " + d.getNome() + ".");
+                throw new DependentException
+                        ("O cpf de " + dependente.getNome() + " é igual ao de " + d.getNome() + ".");
             }
         }
         dependentes.add(dependente);

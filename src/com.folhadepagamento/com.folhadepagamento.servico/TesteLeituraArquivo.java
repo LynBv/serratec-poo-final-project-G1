@@ -10,10 +10,8 @@ public class TesteLeituraArquivo {
     public static void main(String[] args) {
 
         try {
-
-         //   List<Funcionario> funcionarios = LeituraArquivo.lerFuncionario("");
-
-            LeituraArquivo leituraArquivo = new LeituraArquivo();
+            LeituraArquivo leitura = new LeituraArquivo();
+            List<Funcionario> funcionarios = leitura.lerFuncionario("C:/Curso/tabela_funcionario.csv");
             for (Funcionario funcionario : funcionarios) {
                 System.out.println("Funcionário: " + funcionario.getNome() + " - CPF: " + funcionario.getCpf() + " Salário Bruto" + funcionario.getSalarioBruto());
             }
