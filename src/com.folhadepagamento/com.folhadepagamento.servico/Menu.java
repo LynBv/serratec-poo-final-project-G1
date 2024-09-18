@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class Menu extends JFrame implements ActionListener {
 
@@ -27,6 +28,7 @@ public class Menu extends JFrame implements ActionListener {
     JPanel panelGerarFP;
     JOptionPane popUpFP;
 
+
     public Menu() {
 
         this.setTitle(TITULO);
@@ -45,11 +47,21 @@ public class Menu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonProcurar) {
-            buttonGerarFP.setVisible(true);
-            labelResultadoProcura.setVisible(true);
+            try {
+                LeituraArquivo.lerFuncionario(textFieldCaminho.getText());
+
+                buttonGerarFP.setVisible(true);
+                labelResultadoProcura.setVisible(true);
+                labelResultadoProcura.setText(ARQUIVO_ENCONTRADO);
+
+            } catch (FileNotFoundException ex) {
+                labelResultadoProcura.setText(ARQUIVO_NAO_ENCONTRADO);
+                labelResultadoProcura.setVisible(true);
+                buttonGerarFP.setVisible(false);
+            }
         }
         if (e.getSource() == buttonGerarFP) {
-           JOptionPane.showMessageDialog(null, "Folha de Pagamento");
+
         }
     }
 
@@ -88,7 +100,7 @@ public class Menu extends JFrame implements ActionListener {
         buttonProcurar.setBackground(Color.LIGHT_GRAY);
         buttonProcurar.addActionListener(this);
 
-        labelResultadoProcura = new JLabel(ARQUIVO_ENCONTRADO);
+        labelResultadoProcura = new JLabel();
         labelResultadoProcura.setBounds(15, 85, 300, 15);
         labelResultadoProcura.setForeground(Color.gray);
         labelResultadoProcura.setVisible(false);
