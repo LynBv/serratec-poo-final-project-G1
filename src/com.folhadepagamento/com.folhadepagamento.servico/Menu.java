@@ -34,7 +34,6 @@ public class Menu extends JFrame implements ActionListener {
     JPanel panelCabecalho;
     JPanel panelProcurar;
     JPanel panelGerarFP;
-    JOptionPane popUpFP;
     LeituraArquivo leitura;
 
 
@@ -185,9 +184,4 @@ public class Menu extends JFrame implements ActionListener {
         return panelGerarFP;
     }
 
-    public JOptionPane criarPopUpFP(){
-        popUpFP = new JOptionPane(FOLHA_GERADA);
-        popUpFP.createDialog(null);
-        return popUpFP;
-    }
 }
