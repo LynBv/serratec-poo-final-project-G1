@@ -16,11 +16,20 @@ import java.util.Scanner;
 
 public class LeituraArquivo {
 
-    //private List<Funcionario> funcionarios = new ArrayList<>();
+    private  List<Funcionario> funcionarios = new ArrayList<>();
 
-    public static List<Funcionario> lerFuncionario(String caminhoArquivo) throws FileNotFoundException {
+
+    public LeituraArquivo() {
+    }
+
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+
+    public List<Funcionario> lerFuncionario(String caminhoArquivo) throws FileNotFoundException {  
 
         Scanner lerArquivo = new Scanner((new File(caminhoArquivo)));
+
         //System.out.println("Digite o nome do arquivo:");
         //AQUI EU PEÇO NOME DO ARQUIVO PARA O USUÁRIO
 
@@ -28,7 +37,8 @@ public class LeituraArquivo {
         while (lerArquivo.hasNextLine()) { //Enquanto tiverem linhas no arquivo, cada uma será adicionada na variável
             linhas.add(lerArquivo.nextLine());
         }
-        List<Funcionario> funcionarios = new ArrayList<>(); //Criando Array de Funcionarios
+
+        //List<Funcionario> funcionarios = new ArrayList<>(); //Criando Array de Funcionarios
         Funcionario funcionario = new Funcionario(); //Instanciando um funcionário vazio fora do FOR para quando ele rodar começar vazio. Para isso criei o construtor vazio.
         for (String linha : linhas) {
             if (!linha.isEmpty()) {
