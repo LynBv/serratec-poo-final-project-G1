@@ -1,24 +1,24 @@
 package com.folhadepagamento.com.folhadepagamento.fiscal;
 
-import java.util.Scanner;
+public enum TabelaIR {
 
-public enum TabelaINSS {
-
-	FAIXA1(0., 1412.00, 7.5, 0.),
-	FAIXA2(1412.01, 2666.68, 9., 21.18),
-	FAIXA3(2666.69, 4000.03, 12., 101.18),
-	FAIXA4(4000.04, 7786.02, 14., 181.18);
+	FAIXA1(0., 2259.20, 0.,0.),
+	FAIXA2(2259.21, 2826.65, 7.5,169.44),
+	FAIXA3(2826.66, 3751.05, 15.,381.44),
+	FAIXA4(3751.06, 4664.68, 22.5, 662.77),
+	FAIXA5(4664.68, null, 27.5, 896.);
 
 	private Double valorMinimo;
 	private Double valorMaximo;
 	private Double aliquota;
 	private Double deducao;
 	
-	TabelaINSS(Double valorMinimo, Double valorMaximo, Double aliquota, Double deducao) {
+	TabelaIR(Double valorMinimo, Double valorMaximo, Double aliquota, Double deducao) {
 		this.valorMinimo = valorMinimo;
 		this.valorMaximo = valorMaximo;
 		this.aliquota = aliquota;
 		this.deducao = deducao;
+
 	}
 	
 	public Double getValorMinimo() {
@@ -33,6 +33,7 @@ public enum TabelaINSS {
 
 	public Double getAliquota() {
 		return aliquota;
+
 	}
 
 	public Double getDeducao() {
@@ -41,8 +42,9 @@ public enum TabelaINSS {
 
 }
 
-// Tabela de alíquotas de 2024:
-// Até R$ 1.412,00: 7.5%
-// De R$ 1.412,01 até R$ 2.666,68: 9%
-// De R$ 2.666,69 até R$ 4.000,03: 12%
-// De R$ 4.000,04 até R$ 7.786,02: 14%
+// Tabela de Imposto de Renda para o ano de 2024:
+// Até R$ 2.259,20: Isento
+// De R$ 2.259,21 até R$ 2.826,65: 7.5%
+// De R$ 2.826,66 até R$ 3.751,05: 15%
+// De R$ 3.751,06 até R$ 4.664,68: 22.5%
+// Acima de R$ 4.664,68: 27.5%
