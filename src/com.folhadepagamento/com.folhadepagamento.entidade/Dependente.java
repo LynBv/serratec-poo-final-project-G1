@@ -13,7 +13,7 @@ public class Dependente extends Pessoa {
     public Dependente(String nome, String cpf, LocalDate dataNascimento, TipoParentesco tipoParentesco) {
         super(nome, cpf, dataNascimento);
        if (calcularIdade(dataNascimento) >= 18) {
-           //throw new DependentException(nome + " tem mais de 18 anos.");
+           throw new DependentException(nome + " tem mais de 18 anos.");
         } else {
            this.tipoParentesco = tipoParentesco;
         }
