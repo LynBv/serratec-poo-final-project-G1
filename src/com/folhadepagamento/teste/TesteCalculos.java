@@ -1,9 +1,10 @@
-package com.folhadepagamento.com.folhadepagamento.entidade;
+package com.folhadepagamento.teste;
 
+import com.folhadepagamento.com.folhadepagamento.entidade.Dependente;
+import com.folhadepagamento.com.folhadepagamento.entidade.Funcionario;
+import com.folhadepagamento.com.folhadepagamento.entidade.TipoParentesco;
 import com.folhadepagamento.com.folhadepagamento.exceptions.DependentException;
 
-import java.math.BigDecimal;
-import java.time.DateTimeException;
 import java.time.LocalDate;
 
 public class TesteCalculos {
