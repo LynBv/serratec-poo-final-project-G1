@@ -8,22 +8,13 @@ import java.util.List;
 public class TesteLeituraArquivo {
 
     public static void main(String[] args) {
-        LeituraArquivo leituraArquivo = new LeituraArquivo();
-        String caminhoArquivo = "C:\\Users\\Matheus\\Desktop\\Serratec\\POO\\Codigos\\ProjetoFinalPOO\\serratec-poo-final-project-G1\\src\\com.folhadepagamento\\com.folhadepagamento.resources\\tabela_funcionario.csv";
 
         try {
-
-           List<Funcionario> funcionarios = leituraArquivo.lerFuncionario(caminhoArquivo);
-
+            LeituraArquivo leitura = new LeituraArquivo();
+            List<Funcionario> funcionarios = leitura.lerFuncionario("C:/Curso/tabela_funcionario.csv");
             for (Funcionario funcionario : funcionarios) {
-                System.out.println("Nome: " + funcionario.getNome());
-                System.out.println("CPF: " + funcionario.getCpf());
-                System.out.println("Data de Nascimento: " + funcionario.getDataNascimento());
-                System.out.println("Salário Bruto: " + funcionario.getSalarioBruto());
-                System.out.println("Dependentes: " + funcionario.getDependentes());
-                System.out.println("------");
+                System.out.println("Funcionário: " + funcionario.getNome() + " - CPF: " + funcionario.getCpf() + " Salário Bruto" + funcionario.getSalarioBruto());
             }
-
         } catch (IOException e) {
             System.err.println("Erro ao ler o arquivo: " + e.getMessage());
         }

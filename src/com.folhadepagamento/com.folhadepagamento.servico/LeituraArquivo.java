@@ -3,7 +3,9 @@ package com.folhadepagamento.com.folhadepagamento.servico;
 import com.folhadepagamento.com.folhadepagamento.entidade.Dependente;
 import com.folhadepagamento.com.folhadepagamento.entidade.Funcionario;
 import com.folhadepagamento.com.folhadepagamento.entidade.TipoParentesco;
+import com.folhadepagamento.com.folhadepagamento.exceptions.DependentException;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -38,7 +40,6 @@ public class LeituraArquivo {
 
         //List<Funcionario> funcionarios = new ArrayList<>(); //Criando Array de Funcionarios
         Funcionario funcionario = new Funcionario(); //Instanciando um funcionário vazio fora do FOR para quando ele rodar começar vazio. Para isso criei o construtor vazio.
-        //System.out.println("Teste" + linhas) ;
         for (String linha : linhas) {
             if (!linha.isEmpty()) {
                 String[] dadosDaLinha = linha.split(";"); //Criando array de String para separar as informações de cada linha.
@@ -65,13 +66,25 @@ public class LeituraArquivo {
 
                     // Obtém o tipo de parentesco da string
                     TipoParentesco parentesco = TipoParentesco.valueOf(dadosDaLinha[3]);
+                    Dependente dependente = null;
 
-                    // Instancia o dependente
-                    Dependente dependente = new Dependente(dadosDaLinha[0], dadosDaLinha[1], dataNascimento, parentesco);
+                    try {
+                        // Instancia o dependente
+                        dependente = new Dependente(dadosDaLinha[0], dadosDaLinha[1], dataNascimento, parentesco);
 
-                    // Adiciona o dependente ao funcionário
-                    funcionario.adicionarDependente(dependente);
-                    //System.out.println(dependente);
+                        try {
+                            // Adiciona o dependente ao funcionário
+                           funcionario.adicionarDependente(dependente);
+                            //System.out.println(dependente);
+
+                        } catch (DependentException e) {
+                            JOptionPane.showMessageDialog(null, e.getMessage());
+                        }
+                    } catch (DependentException e) {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
+
+
                 }
            }
             else {
