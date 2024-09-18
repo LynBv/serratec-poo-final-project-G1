@@ -30,18 +30,6 @@ public class EscritaArquivo {
         gravador.close();
     }
 
-    public static void main(String[] args) {
-        try {
-            String nomeArquivo = "teste.csv";
-              LeituraArquivo leitura = new LeituraArquivo();
-            // Chama o método para gravar os dados no arquivo CSV
-            gravarFuncionarios(leitura.getFuncionarios(), nomeArquivo);
-
-            System.out.println("Arquivo criado com sucesso!");
-        } catch (IOException e) {
-            System.err.println("Erro ao criar o arquivo : " + e.getMessage());
-        }
-    }
 
 }
 

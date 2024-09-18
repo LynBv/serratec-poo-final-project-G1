@@ -4,7 +4,11 @@ import com.folhadepagamento.com.folhadepagamento.exceptions.DependentException;
 import com.folhadepagamento.com.folhadepagamento.fiscal.CalculosFolhaDePagamento;
 import com.folhadepagamento.com.folhadepagamento.fiscal.TabelaINSS;
 import com.folhadepagamento.com.folhadepagamento.fiscal.TabelaIR;
+import com.folhadepagamento.com.folhadepagamento.servico.LeituraArquivo;
+import com.folhadepagamento.connection.ConnectionFactory;
+import com.folhadepagamento.dao.FuncionarioDao;
 
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +29,9 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
     }
 
     public Funcionario() {
+    }
+
+    public Funcionario(String nome, String cpf) {
     }
 
     @Override
@@ -115,6 +122,8 @@ public class Funcionario extends Pessoa implements CalculosFolhaDePagamento {
         this.calcularIR();
         this.calcularSalarioLiquido();
     }
+
+
 }
 
 
